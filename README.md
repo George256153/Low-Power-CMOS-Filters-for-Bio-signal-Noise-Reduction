@@ -5,7 +5,7 @@ This project focuses on the design and simulation of a switched-capacitor filter
 
 ---
 ## System Architecture
-![System Architecture](path/to/your/diagram.png)
+<img src="images/structure.png" alt="Schematic" width="60%">
 
 This diagram illustrates the filter's architecture, including the notch filters, Chebyshev I low-pass filter, and operational amplifier integration.
 
