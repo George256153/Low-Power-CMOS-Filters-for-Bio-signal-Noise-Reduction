@@ -1,0 +1,27 @@
+* "simulator" "HSPICE" 
+* "version" "D-2010.03-SP2 32-BIT"
+* "format" "HSP"
+* "rundate" "07:54:44 11/29/2024 "
+* "netlist" "c:\users\admin\desktop\op_²ø\testbench_ac.sp "
+* "runtitle" "* testbench for two stage opamp @ ac *"
+* time =    0.            
+* temperature =   25.0000        
+*** BEGIN: Saved Operating Point ***                     
+.option 
++ gmindc=   1.0000p       
+.nodeset
++ ibias = 343.5897m       
++ v+ = 900.0000m       
++ v- = 900.0000m       
++ vb0 =   1.2000        
++ vb1 = 752.0446m       
++ vdd =   1.8000        
++ vo = 934.9731m       
++ xop.net1 =   1.3826        
++ xop.net15 = 313.4378m       
++ xop.net35 = 610.8926m       
++ xop.net37 =   1.3826        
++ xop.net38 = 610.8926m       
++ xop.vb2 = 934.9732m       
++ xbias_op.net1 = 435.2196m       
+***   END: Saved Operating Point ***                     

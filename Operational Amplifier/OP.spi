@@ -1,0 +1,41 @@
+************************************************************************
+* auCdl Netlist:
+* 
+* Library Name:  Filter_OP
+* Top Cell Name: OP
+* View Name:     schematic
+* Netlisted on:  Nov 29 07:40:44 2024
+************************************************************************
+
+*.BIPOLAR
+*.RESI = 2000 
+*.RESVAL
+*.CAPVAL
+*.DIOPERI
+*.DIOAREA
+*.EQUATION
+*.SCALE METER
+*.MEGA
+.PARAM
+
+
+
+************************************************************************
+* Library Name: Filter_OP
+* Cell Name:    OP
+* View Name:    schematic
+************************************************************************
+
+.SUBCKT OP GND V+ V- VB0 VB1 VDD Vo ibias
+*.PININFO GND:I V+:I V-:I VB0:I VB1:I VDD:I ibias:I Vo:O
+MM3 VB2 VB0 net35 GND N_18 m=4 l=2.0u w=768.0n
+MM2 Vo VB0 net38 GND N_18 m=4 l=2.0u w=768.0n
+MM1 net38 V- net15 GND N_18 m=4 l=2.0u w=464.0n
+MM0 net35 V+ net15 GND N_18 m=4 l=2.0u w=464.0n
+MM8 net15 ibias GND GND N_18 m=4 l=2.0u w=12.94u
+MM7 net37 VB2 VDD VDD P_18 m=4 l=2.0u w=393.0n
+MM6 net1 VB2 VDD VDD P_18 m=4 l=2.0u w=393.0n
+MM5 Vo VB1 net37 VDD P_18 m=4 l=2.0u w=11.31u
+MM4 VB2 VB1 net1 VDD P_18 m=4 l=2.0u w=11.31u
+.ENDS
+

@@ -1,0 +1,38 @@
+************************************************************************
+* auCdl Netlist:
+* 
+* Library Name:  Filter_OP
+* Top Cell Name: bias_OP
+* View Name:     schematic
+* Netlisted on:  Nov 29 07:40:24 2024
+************************************************************************
+
+*.BIPOLAR
+*.RESI = 2000 
+*.RESVAL
+*.CAPVAL
+*.DIOPERI
+*.DIOAREA
+*.EQUATION
+*.SCALE METER
+*.MEGA
+.PARAM
+
+
+
+************************************************************************
+* Library Name: Filter_OP
+* Cell Name:    bias_OP
+* View Name:    schematic
+************************************************************************
+
+.SUBCKT bias_OP GND VB0 VB1 VDD ibias
+*.PININFO GND:I VDD:I VB0:O VB1:O ibias:O
+MM7 VB1 VB1 ibias GND N_18 m=1 l=10.0u w=1.875u
+MM6 ibias ibias GND GND N_18 m=1 l=10.0u w=1.875u
+MM0 net1 net1 GND GND N_18 m=1 l=10.0u w=535.0n
+MM9 VB1 VB1 VDD VDD P_18 m=1 l=40.0u w=250.0n
+MM5 VB0 VB0 VDD VDD P_18 m=1 l=10.0u w=1.2u
+MM4 net1 net1 VB0 VDD P_18 m=1 l=10.0u w=1.2u
+.ENDS
+

@@ -1,0 +1,6 @@
+$DATA1 SOURCE='HSPICE' VERSION='D-2010.03-SP2 32-BIT'
+.TITLE '* testbench for two stage opamp @ ac *'
+ unit_gain        phase_margin     gain_db          temper            
+ alter#            
+  1.147e+05         89.8370          73.2902          25.0000         
+ 1                 

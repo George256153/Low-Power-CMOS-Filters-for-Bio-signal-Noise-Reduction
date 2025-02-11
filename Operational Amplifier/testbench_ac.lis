@@ -1,0 +1,209 @@
+ ****** HSPICE -- D-2010.03-SP2 32-BIT (Aug 26 2010) winnt ******               
+  Copyright (C) 2010 Synopsys, Inc. All Rights Reserved.                        
+  Unpublished-rights reserved under US copyright laws.
+  This program is protected by law and is subject to the 
+  terms and conditions of the license agreement from Synopsys.
+  Use of this program is your acceptance to be bound by the 
+  license agreement. HSPICE is the trademark of Synopsys, Inc.
+  Input File: c:\users\admin\desktop\op_²ø\testbench_ac.sp                      
+  lic:  
+  lic: FLEXlm: v10.8 
+  lic: USER:   Admin                HOSTNAME: 20220329-201219 
+  lic: HOSTID: "04421a20943f 00090ffe0001 04421a4c3698 06421a4c3698 04421a4c3698
+ "
+  lic: Using FLEXlm license file: 
+  lic: 27000@localhost 
+  lic: Checkout 1 hspice 
+  lic: License/Maintenance for hspice will expire on 31-dec-2028/2008.120 
+  lic: 1(in_use)/999(total) FLOATING license(s) on SERVER localhost 
+  lic:   
+ Init: read install configuration file: C:\synopsys\Hspice_D-2010.03-SP2\meta.cfg
+  **warning** (c:\users\admin\desktop\op_²ø\bias_OP.spi:28) Parameter name is not defined in .param. Please enter parameter variable with their respective value/expression.
+1****** HSPICE -- D-2010.03-SP2 32-BIT (Aug 26 2010) winnt ******               
+ ******  
+ * testbench for two stage opamp @ ac *
+
+  ******  circuit name directory
+ circuit number to circuit name directory
+   number circuitname                     definition         multiplier
+        0 main circuit
+        1 xop.                            op                 1.00 
+        2 xbias_op.                       bias_op            1.00 
+ 
+
+ 
+      
+ **info** set option symb=1 internally to help for convergence.
+ *****************************************************************
+ ******  option summary
+ ******
+ runlvl  = 3         bypass  = 2         
+  Opening plot unit= 79
+ file=c:\users\admin\desktop\op_²ø\testbench_ac.pa0                            
+
+1****** HSPICE -- D-2010.03-SP2 32-BIT (Aug 26 2010) winnt ******               
+ ******  
+ * testbench for two stage opamp @ ac *
+
+  ******  operating point information tnom=  25.000 temp=  25.000 *****
+ ***** operating point status is all       simulation time is     0.     
+    node    =voltage      node    =voltage      node    =voltage
+
+ +0:ibias   = 343.5897m 0:v+      = 900.0000m 0:v-      = 900.0000m
+ +0:vb0     =   1.2000  0:vb1     = 752.0446m 0:vdd     =   1.8000 
+ +0:vo      = 934.9731m 1:net1    =   1.3826  1:net15   = 313.4378m
+ +1:net35   = 610.8926m 1:net37   =   1.3826  1:net38   = 610.8926m
+ +1:vb2     = 934.9732m 2:net1    = 435.2196m
+
+
+ ****  voltage sources
+
+ subckt                                   
+ element  0:vdd      0:vin-     0:vin+    
+  volts      1.8000   900.0000m  900.0000m
+  current   -6.9077u    0.         0.     
+  power     12.4338u    0.         0.     
+
+     total voltage source power dissipation=   12.4338u       watts
+
+
+
+
+ **** mosfets
+
+
+ subckt   xop        xop        xop        xop        xop        xop       
+ element  1:mm3      1:mm2      1:mm1      1:mm0      1:mm8      1:mm7     
+ model    0:n_18.1   0:n_18.1   0:n_18.1   0:n_18.1   0:n_18.1   0:p_18.1  
+ region     Saturati   Saturati   Saturati   Saturati     Cutoff   Saturati
+  id         3.3733u    3.3733u    3.3733u    3.3733u    6.7466u   -3.3733u
+  ibs     -310.2353a -310.2353a -132.2990a -132.2990a -1.069e-21  1.091e-21
+  ibd     -474.8132a -474.8132a -257.8471a -257.8471a   -1.2354f  101.9755a
+  vgs      589.0693m  589.0693m  586.5622m  586.5622m  343.5897m -865.0268m
+  vds      324.0806m  324.0805m  297.4548m  297.4548m  313.4378m -417.3506m
+  vbs     -610.8926m -610.8926m -313.4378m -313.4378m    0.         0.     
+  vth      479.6397m  479.6397m  432.5865m  432.5865m  350.2446m -495.9239m
+  vdsat    126.1175m  126.1175m  155.9290m  155.9290m   57.7840m -358.3214m
+  vod      109.4296m  109.4296m  153.9757m  153.9757m   -6.6549m -369.1029m
+  beta     465.0852u  465.0852u  276.2231u  276.2231u    7.8358m   51.5355u
+  gam eff  522.3380m  522.3380m  515.5684m  515.5684m  507.4459m  557.0846m
+  gm        45.5360u   45.5360u   36.4763u   36.4763u  150.9286u   16.3754u
+  gds      591.5233n  591.5235n  569.7064n  569.7064n    1.2826u  578.8097n
+  gmb        6.9442u    6.9442u    6.1915u    6.1915u   31.6571u    5.0670u
+  cdtot      4.5149f    4.5149f    3.2141f    3.2141f   74.5751f    3.1892f
+  cgtot     40.1134f   40.1134f   24.6494f   24.6494f  422.0359f   19.9594f
+  cstot     41.5887f   41.5887f   26.1330f   26.1330f  373.1144f   23.5211f
+  cbtot     14.6028f   14.6028f   10.0521f   10.0521f  287.3764f   10.6453f
+  cgs       36.0605f   36.0605f   22.0604f   22.0604f  283.7033f   17.3652f
+  cgd        1.0498f    1.0498f  721.2324a  721.2324a   19.1539f  891.5955a
+
+
+
+ subckt   xop        xop        xop        xbias_op   xbias_op   xbias_op  
+ element  1:mm6      1:mm5      1:mm4      2:mm7      2:mm6      2:mm0     
+ model    0:p_18.1   0:p_18.1   0:p_18.1   0:n_18.1   0:n_18.1   0:n_18.1  
+ region     Saturati   Saturati   Saturati   Saturati   Saturati   Saturati
+  id        -3.3733u   -3.3733u   -3.3733u   75.3691n   75.3685n   85.6551n
+  ibs      1.091e-21  899.4971a  899.4971a  -70.4445a -1.714e-23 -3.681e-23
+  ibd      101.9755a    1.8644f    1.8644f -154.1879a  -70.4445a  -48.1040a
+  vgs     -865.0268m -630.6048m -630.6048m  408.4549m  343.5897m  435.2196m
+  vds     -417.3506m -447.6763m -447.6761m  408.4549m  343.5897m  435.2196m
+  vbs        0.       417.3506m  417.3506m -343.5897m    0.         0.     
+  vth     -495.9239m -598.3252m -598.3252m  392.3550m  325.3632m  337.8941m
+  vdsat   -358.3214m  -82.1334m  -82.1334m   65.6093m   63.9039m  106.8285m
+  vod     -369.1029m  -32.2796m  -32.2796m   16.0999m   18.2265m   97.3255m
+  beta      51.5355u    1.5226m    1.5226m   55.9271u   55.2873u   15.5057u
+  gam eff  557.0846m  554.3231m  554.3231m  516.2902m  507.4459m  507.4459m
+  gm        16.3754u   61.9552u   61.9552u    1.5912u    1.5664u    1.2422u
+  gds      578.8097n  118.2181n  118.2182n    6.6803n    5.4106n    4.4951n
+  gmb        5.0670u   16.0092u   16.0092u  276.9623n  324.9827n  249.5117n
+  cdtot      3.1892f   50.6728f   50.6729f    2.6086f    2.8584f  914.9645a
+  cgtot     19.9594f  468.7700f  468.7700f   88.7198f   92.6831f   34.3711f
+  cstot     23.5211f  481.6813f  481.6813f   80.9789f   85.3084f   35.3394f
+  cbtot     10.6453f  224.3514f  224.3514f   31.9018f   37.0431f   10.7824f
+  cgs       17.3652f  388.1689f  388.1689f   72.1147f   74.1999f   30.9083f
+  cgd      891.5955a   16.3427f   16.3427f  563.7654a  633.4908a  175.8479a
+
+
+
+ subckt   xbias_op   xbias_op   xbias_op  
+ element  2:mm9      2:mm5      2:mm4     
+ model    0:p_18.1   0:p_18.1   0:p_18.1  
+ region     Saturati   Saturati   Saturati
+  id       -75.3682n  -85.6528n  -85.6538n
+  ibs      3.438e-23  1.431e-23   57.8437a
+  ibd       57.4573a   57.8437a  131.5648a
+  vgs       -1.0480  -600.0381m -764.7423m
+  vds       -1.0480  -600.0381m -764.7423m
+  vbs        0.         0.       600.0381m
+  vth     -447.9512m -463.2061m -621.7121m
+  vdsat   -589.1180m -146.5005m -158.8976m
+  vod     -600.0042m -136.8320m -143.0302m
+  beta     426.4347n    8.3622u    7.3704u
+  gam eff  557.0847m  557.0847m  553.2537m
+  gm       242.2932n  973.1571n  945.3020n
+  gds      219.8505p  627.2441p  448.2254p
+  gmb       79.0837n  301.6901n  233.0555n
+  cdtot    582.9288a    1.6006f    1.3970f
+  cgtot     59.7658f   74.7984f   73.6162f
+  cstot     70.7301f   84.7600f   80.7917f
+  cbtot     22.9600f   28.7910f   22.7548f
+  cgs       53.0334f   67.3215f   67.5613f
+  cgd      190.5281a  463.2346a  447.2946a
+
+
+
+ ******  
+ * testbench for two stage opamp @ ac *
+
+  ******  ac analysis tnom=  25.000 temp=  25.000 *****
+   unit_gain=  1.1477E+05
+   phase_margin=  8.9837E+01
+   gain_db=  7.3290E+01    at=  1.0000E+01
+               from=  1.0000E+01    to=  1.0000E+10
+
+          ***** job concluded
+1****** HSPICE -- D-2010.03-SP2 32-BIT (Aug 26 2010) winnt ******               
+ ******  
+ * testbench for two stage opamp @ ac *
+
+  ******  job statistics summary tnom=  25.000 temp=  25.000 *****
+
+  ******  HSPICE Threads Information  ******
+
+  Command Line Threads Count                  :     1
+  Available CPU Count                         :    12
+  Actual Model Evaluation(Load) Threads Count :     1
+  Actual Solver Threads Count                 :     1
+
+
+  ******  Circuit Statistics  ******
+  # nodes       =      45 # elements   =      19
+  # resistors   =       0 # capacitors =       1 # inductors   =       0
+  # mutual_inds =       0 # vccs       =       0 # vcvs        =       0
+  # cccs        =       0 # ccvs       =       0 # volt_srcs   =       3
+  # curr_srcs   =       0 # diodes     =       0 # bjts        =       0
+  # jfets       =       0 # mosfets    =      15 # U elements  =       0
+  # T elements  =       0 # W elements =       0 # B elements  =       0
+  # S elements  =       0 # P elements =       0 # va device   =       0
+
+
+  ******  Runtime Statistics (seconds)  ******
+
+  analysis           time    # points   tot. iter  conv.iter
+  op point           0.01           1          94
+  ac analysis        0.04         901         901
+  readin             0.05
+  errchk             0.01
+  setup              0.01
+  output             0.00
+
+
+           total memory used          368  kbytes
+           total cpu time            0.14 seconds
+           total elapsed time        0.20 seconds
+           job started at     07:54:44 11/29/2024
+           job ended   at     07:54:44 11/29/2024
+
+
+  lic: Release hspice token(s) 
