@@ -60,12 +60,7 @@ This diagram illustrates the filter's architecture, including the notch filters,
 3. B. Razavi, *Design of Analog Integrated Circuits*, McGraw-Hill, 2001.
 4. S. Franco, *Design with Operational Amplifiers and Analog Integrated Circuits*, 3rd Edition, McGraw-Hill, 2002.
 
----
 
-## Author
-**Chun-Chi Lu**  
-Email: [Your Email Address]  
-LinkedIn: [Your LinkedIn Profile]  
 
 ---
 
