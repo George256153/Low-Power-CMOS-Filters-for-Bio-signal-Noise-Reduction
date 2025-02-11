@@ -1,0 +1,4 @@
+$DATA1 SOURCE='PrimeSim HSPICE' VERSION='R-2020.12-SP2 linux64' PARAM_COUNT=0
+.TITLE '* simulation file*'
+ power            temper           alter#          
+  1.860e-06        2.700e+01       1               

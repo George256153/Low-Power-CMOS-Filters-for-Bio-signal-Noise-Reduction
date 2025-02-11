@@ -1,0 +1,113 @@
+* Simulation File*
+.protect
+.lib 'cic018.l' TT
+.unprotect
+.temp 27
+.option post
++accurate=1
++ingold=2
++runlvl=6
+
+.inc pressure_time.cir
+*.inc sig_time.cir
+.inc sig_2024_bias900mV_time.cir
+
+*=========Input signals =========*
+Vdd vdd gnd 1.8
+xecg vin gnd ecg
+xori vori gnd ori
+vclk clk gnd pulse(0 1.8 0 10p 10p 2.5e-5 5e-5)	*design by yourself
+*=========non overlapped circuit=================*
+
+*==========Your filter ==========* 
+.subckt filter vin vout clk vdd gnd
+***Notch Filter ***
+.param NRB = 0.11G
+.param NRA = 0.12G
+
+.param NR = 2.7G
+.param NC = 9.82p
+
+rn1 vin   node1   2*NR
+rn2 node1 node3   2*NR
+cn1 node1 node4   2*NC
+
+cn2 vin   node2   NC
+cn3 node2 node3   NC
+rn3 node2 node4   NR 
+
+rn4 out_NF node4  NRA
+rn5 node4  gnd    NRB
+
+rn6 out_NF node3  100K ***Rin=100K***
+rn7 OP_NF  out_NF 1K   ***Rout=1K***
+
+En1 OP_NF gnd OPAMP node3 out_NF 100K ***Av=100K***
+***Low Pass Filter stage 1*** 
+.param R1_s1 = 0.04G
+.param R2_s1 = 2.13G
+.param C1_s1 = 0.97p
+.param C2_s1 = 0.67p
+
+rl1 out_NF n1 R1_s1
+cl1 n1 vo1    C1_s1
+rl2 n1 n2     R2_s1
+cl2 n2 gnd    C2_s1
+
+rl3 vo1 n2 100K ***Rin=100K***
+rl4 OPo1 vo1 1K ***Rout=1K***
+
+El1 OPo1 gnd OPAMP n2 vo1 100K ***Av=100K***
+***Low Pass Filter stage 2*** 
+.param R1_s2 = 0.27G
+.param R2_s2 = 0.34G
+.param C1_s2 = 6.21p
+.param C2_s2 = 0.97p
+
+rl5  vo1  n4  R1_s2
+cl3  n4   vo2 C1_s2
+rl6  n4   n5  R2_s2
+cl4  n5   gnd C2_s2
+
+rl7  vo2   n5 100K ***Rin=100K***
+rl8  OPo2 vo2 1K ***Rout=1K***
+
+El2  OPo2 gnd OPAMP n5 vo2 100K ***Av=100K***
+***Notch Filter stage2***
+.param NRB1 = 5.15G
+.param NRA1 = 0.85G
+
+.param NR1 = 0.24G
+.param NC1 = 1.65p
+
+rn11 vo2    node11   2*NR1
+rn12 node11 node13   2*NR1
+cn11 node11 node14   2*NC1
+
+cn12 vo2    node12   NC1
+cn13 node12 node13   NC1
+rn13 node12 node14   NR1
+
+rn14 vout   node14   NRA1
+rn15 node14 gnd      NRB1
+
+rn16 vout    node13  100K ***Rin=100K***
+rn17 OP_NF1  vout    1K   ***Rout=1K***
+
+En2 OP_NF1 gnd OPAMP node13 vout 100K ***Av=100K***
+.ends
+*================================*
+xfilter vin vout clk vdd gnd filter
+Cload vout gnd 1p
+
+.tran 0.1m 0.946 
+
+vin+ vtest gnd dc=1v ac=1 
+xfilter1 vtest vtest_o clk vdd gnd filter
+Cload1 vtest_o gnd 1p
+
+.ac dec 100 1 1000g
+*============Power===============*
+.meas tran power AVG PAR('V(vdd)*abs(I(vdd))') from=0.1ms to=0.946
+*================================*
+.end
